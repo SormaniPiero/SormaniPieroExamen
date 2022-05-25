@@ -24,68 +24,74 @@ namespace Deposito
     /// </summary>
     class Deposito
     {
-        private decimal niveldeagua;
-        private decimal niveldepienso;
+        private decimal nivelAgua;
+        private decimal nivelPienso;
         private decimal cantidadMaxAgua;      //La cantidad máxima a reponer no puede superar el tamaño del DEPÓSITO DE AGUA, se comprueba antes de actualizar los niveles. 
         private decimal cantidadMaxPienso;     //La cantidad máxima a reponer no puede superar el tamaño del DEPÓSITO DE PIENSO, se comprueba antes de actualizar los niveles. 
 
         public decimal Niveldeagua
         {
-            get { return niveldeagua; }
+            get { return nivelAgua; }
         }
 
 
         public decimal Niveldepienso
         {
-            get { return niveldepienso; }
+            get { return nivelPienso; }
         }
 
         /// <summary>
         /// En esta función he tenido que quitar el punto y coma
-        /// antes del if
+        /// después del if
         /// </summary>
-        public void reponerAgua(decimal cantidadareponerdeagua)
+        /// <remark>Si no se hubiese corregido ese error, el programa podría haber fallado</remark>
+
+        public void reponerAgua(decimal cantidadReponerAgua)
         {
 
-            cantidadMaxAgua = cantidadareponerdeagua + niveldeagua;
-            if (cantidadareponerdeagua > 0 && cantidadMaxAgua < 10000)   //Tamaño del depósito de pienso es de 1000 l.
-            niveldeagua = niveldeagua + cantidadareponerdeagua;
-
-        }
-
-        public void reponerPeinso(decimal cantidadareponerdepienso)
-        {
-
-            cantidadMaxPienso = cantidadareponerdepienso + niveldepienso;
-            if (cantidadareponerdepienso > 0 && cantidadMaxPienso < 5000)  //Tamaño del depósito de pienso es de 5000 kg. 
-                niveldepienso = niveldepienso + cantidadareponerdepienso;
+            cantidadMaxAgua = cantidadReponerAgua + nivelAgua;
+            if (cantidadReponerAgua > 0 && cantidadMaxAgua < 10000)   //Tamaño del depósito de pienso es de 1000 l.
+            nivelAgua = nivelAgua + cantidadReponerAgua;
 
         }
 
 
-        public decimal consumoAgua(decimal cantidadaretirardeagua)
+        public void reponerPeinso(decimal cantidadReponerAgua)
         {
-            decimal retirado1 = 0; //Cantidad que se retira
-            if (cantidadaretirardeagua > 0 && cantidadaretirardeagua <= niveldeagua)
+            //Tamaño del depósito de pienso es de 5000 kg. 
+            cantidadMaxPienso = cantidadReponerAgua + nivelPienso;
+            if (cantidadReponerAgua > 0 && cantidadMaxPienso < 5000)  
+                nivelPienso = nivelPienso + cantidadReponerAgua;
+
+        }
+
+
+        public decimal consumoAgua(decimal cantidadRetirarAgua)
+        {
+            decimal retAgua = 0; //Cantidad que se retira
+            retAgua = calElementos(cantidadRetirarAgua, retAgua);
+
+            return retAgua;
+        }
+
+
+        public decimal consumoPienso(decimal cantidadRetirarPienso)
+        {
+            decimal retPienso = 0; //Cantidad que se retira
+            retPienso = calElementos(cantidadRetirarPienso, retPienso);
+
+            return retPienso;
+        }
+
+        private decimal calElementos(decimal cantidadRetirarPienso, decimal retPienso)
+        {
+            if (cantidadRetirarPienso > 0 && cantidadRetirarPienso <= nivelPienso)
             {
-                retirado1 = cantidadaretirardeagua;
-                niveldeagua = niveldeagua - cantidadaretirardeagua;
+                retPienso = cantidadRetirarPienso;
+                nivelPienso = nivelPienso - cantidadRetirarPienso;
             }
 
-            return retirado1;
+            return retPienso;
         }
-
-        public decimal consumoPienso(decimal cantidadaretirardepienso)
-        {
-            decimal retirado2 = 0; //Cantidad que se retira
-            if (cantidadaretirardepienso > 0 && cantidadaretirardepienso <= niveldepienso)
-            {
-                retirado2 = cantidadaretirardepienso;
-                niveldepienso = niveldepienso - cantidadaretirardepienso;
-            }
-
-            return retirado2;
-        }
-
     }
 }
