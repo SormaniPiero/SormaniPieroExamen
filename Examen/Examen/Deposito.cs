@@ -3,7 +3,7 @@
 
 //namespace EDexamenT6a8
 
-//holaaa
+
 namespace Deposito
 {
     /*Clase que representa la gestión de los depósitos de una granja.
@@ -12,13 +12,17 @@ namespace Deposito
      * Los métodos permiten reponer o consumir tanto pienso como agua.
      * Estos comentarios se deben eliminar y usar comentarios de documentación en su lugar.
      */
+
+    /// <summary>
+    /// La primera refactorizacion que voy a hacer
+    /// </summary>
     class Deposito
     {
         private decimal niveldeagua;
         private decimal niveldepienso;
         private decimal cantidadmaxima;      //La cantidad máxima a reponer no puede superar el tamaño del DEPÓSITO DE AGUA, se comprueba antes de actualizar los niveles. 
         private decimal cantidadmaxima2;     //La cantidad máxima a reponer no puede superar el tamaño del DEPÓSITO DE PIENSO, se comprueba antes de actualizar los niveles. 
-        
+
         public decimal Niveldeagua
         {
             get { return niveldeagua; }
@@ -29,13 +33,10 @@ namespace Deposito
             get { return niveldepienso; }
         }
 
-        /// <summary>
-        /// En la función reponer he quitado 
-        /// </summary>
-        /// <param name="cantidadareponerdeagua"></param>
+
         public void reponer1(decimal cantidadareponerdeagua)
         {
-           
+
             cantidadmaxima = cantidadareponerdeagua + niveldeagua;
             if (cantidadareponerdeagua > 0 && cantidadmaxima < 10000) ;  //Tamaño del depósito de pienso es de 1000 l.
             niveldeagua = niveldeagua + cantidadareponerdeagua;
