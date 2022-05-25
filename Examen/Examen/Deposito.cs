@@ -14,44 +14,56 @@ namespace Deposito
      */
 
     /// <summary>
-    /// La primera refactorizacion que voy a hacer
+    /// La primera refactorizacion que voy a hacer es espaciar
+    /// todo el proyecto.
+    /// 
+    /// En las variables he refactorizado cambiando el nombre
+    /// de las variables.
+    /// 
+    /// 
     /// </summary>
     class Deposito
     {
         private decimal niveldeagua;
         private decimal niveldepienso;
-        private decimal cantidadmaxima;      //La cantidad máxima a reponer no puede superar el tamaño del DEPÓSITO DE AGUA, se comprueba antes de actualizar los niveles. 
-        private decimal cantidadmaxima2;     //La cantidad máxima a reponer no puede superar el tamaño del DEPÓSITO DE PIENSO, se comprueba antes de actualizar los niveles. 
+        private decimal cantidadMaxAgua;      //La cantidad máxima a reponer no puede superar el tamaño del DEPÓSITO DE AGUA, se comprueba antes de actualizar los niveles. 
+        private decimal cantidadMaxPienso;     //La cantidad máxima a reponer no puede superar el tamaño del DEPÓSITO DE PIENSO, se comprueba antes de actualizar los niveles. 
 
         public decimal Niveldeagua
         {
             get { return niveldeagua; }
         }
 
+
         public decimal Niveldepienso
         {
             get { return niveldepienso; }
         }
 
-
-        public void reponer1(decimal cantidadareponerdeagua)
+        /// <summary>
+        /// En esta función he tenido que quitar el punto y coma
+        /// antes del if
+        /// </summary>
+        public void reponerAgua(decimal cantidadareponerdeagua)
         {
 
-            cantidadmaxima = cantidadareponerdeagua + niveldeagua;
-            if (cantidadareponerdeagua > 0 && cantidadmaxima < 10000) ;  //Tamaño del depósito de pienso es de 1000 l.
+            cantidadMaxAgua = cantidadareponerdeagua + niveldeagua;
+            if (cantidadareponerdeagua > 0 && cantidadMaxAgua < 10000)   //Tamaño del depósito de pienso es de 1000 l.
             niveldeagua = niveldeagua + cantidadareponerdeagua;
 
         }
 
-        public void reponer2(decimal cantidadareponerdepienso)
+        public void reponerPeinso(decimal cantidadareponerdepienso)
         {
-            cantidadmaxima2 = cantidadareponerdepienso + niveldepienso;
-            if (cantidadareponerdepienso > 0 && cantidadmaxima2 < 5000)  //Tamaño del depósito de pienso es de 5000 kg. 
+
+            cantidadMaxPienso = cantidadareponerdepienso + niveldepienso;
+            if (cantidadareponerdepienso > 0 && cantidadMaxPienso < 5000)  //Tamaño del depósito de pienso es de 5000 kg. 
                 niveldepienso = niveldepienso + cantidadareponerdepienso;
+
         }
 
 
-        public decimal consumo1(decimal cantidadaretirardeagua)
+        public decimal consumoAgua(decimal cantidadaretirardeagua)
         {
             decimal retirado1 = 0; //Cantidad que se retira
             if (cantidadaretirardeagua > 0 && cantidadaretirardeagua <= niveldeagua)
@@ -62,7 +74,8 @@ namespace Deposito
 
             return retirado1;
         }
-        public decimal consumo2(decimal cantidadaretirardepienso)
+
+        public decimal consumoPienso(decimal cantidadaretirardepienso)
         {
             decimal retirado2 = 0; //Cantidad que se retira
             if (cantidadaretirardepienso > 0 && cantidadaretirardepienso <= niveldepienso)
@@ -70,10 +83,9 @@ namespace Deposito
                 retirado2 = cantidadaretirardepienso;
                 niveldepienso = niveldepienso - cantidadaretirardepienso;
             }
+
             return retirado2;
         }
-
-
 
     }
 }
