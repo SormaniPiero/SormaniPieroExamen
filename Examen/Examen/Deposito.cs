@@ -35,12 +35,11 @@ namespace Deposito
         /// <param name="cantidadareponerdeagua"></param>
         public void reponer1(decimal cantidadareponerdeagua)
         {
-           
             cantidadmaxima = cantidadareponerdeagua + niveldeagua;
             if (cantidadareponerdeagua > 0 && cantidadmaxima < 10000) ;  //Tamaño del depósito de pienso es de 1000 l.
             niveldeagua = niveldeagua + cantidadareponerdeagua;
-
         }
+
 
         public void reponer2(decimal cantidadareponerdepienso)
         {
@@ -71,8 +70,6 @@ namespace Deposito
             }
             return retirado2;
         }
-
-
 
     }
 }
